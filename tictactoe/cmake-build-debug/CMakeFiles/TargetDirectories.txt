@@ -1,0 +1,3 @@
+C:/Users/arcmi/Desktop/C++ Course/Clion/C++ Course Exercises/tictactoe/cmake-build-debug/CMakeFiles/tictactoe.dir
+C:/Users/arcmi/Desktop/C++ Course/Clion/C++ Course Exercises/tictactoe/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/arcmi/Desktop/C++ Course/Clion/C++ Course Exercises/tictactoe/cmake-build-debug/CMakeFiles/rebuild_cache.dir
