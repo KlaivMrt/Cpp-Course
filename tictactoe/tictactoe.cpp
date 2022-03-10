@@ -38,7 +38,22 @@ void resetGrid(int _grid[][3]){
     }
 }
 
-void checkGrid(int _grid[][3], Player * currentPlayer, int * rounds, int * tieCheck){
+int setRounds(){
+    int rounds;
+    cout << "How many rounds do you wanna play? >> >>";
+    cin >>rounds;
+    cout << "" << endl;
+    return rounds;
+}
+
+void displayScore(Player * player1, Player * player2){
+    cout << "+-----------------------------------+" << endl;
+    cout << "+-- " << player1 -> name  << " VS " << player2 -> name << endl;
+    cout << "+-- " << player1 -> score  << " +------+ " << player2 -> score << endl;
+    cout << "+-----------------------------------+" << endl;
+}
+
+int checkGrid(int _grid[][3], Player * currentPlayer, int * rounds, int * tieCheck){
     int id = currentPlayer->id;
     cout << *rounds << endl;
 //    cout << rounds << endl;
@@ -48,12 +63,13 @@ void checkGrid(int _grid[][3], Player * currentPlayer, int * rounds, int * tieCh
         currentPlayer->score++;
         --*rounds;
         resetGrid(_grid);
+        return 1;
     }
     else if (_grid[0][2] == _grid[1][1] && _grid[1][1] == _grid[2][0] && _grid[0][2] == id){
         currentPlayer->score++;
         --*rounds;
         resetGrid(_grid);
-        return;
+        return 1;
     }
 
     for (int i = 0; i < 3; ++i) {
@@ -61,7 +77,7 @@ void checkGrid(int _grid[][3], Player * currentPlayer, int * rounds, int * tieCh
             currentPlayer->score++;
             --*rounds;
             resetGrid(_grid);
-            return;
+            return 1;
         }
     }
 
@@ -70,17 +86,25 @@ void checkGrid(int _grid[][3], Player * currentPlayer, int * rounds, int * tieCh
             currentPlayer->score++;
             --*rounds;
             resetGrid(_grid);
-            return;
+            return 1;
         }
     }
     ++*tieCheck;
+    return 0;
 }
 
 void displayGrid(int _grid[][3]){
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
-            cout << _grid[i][j];
+            if(_grid[i][j] == -1){
+                cout << "|- + -|";
+            } else if (_grid[i][j] == 0){
+                cout << "|- X -|";
+            }else if (_grid[i][j] == 1){
+                cout << "|- 0 -|";
+            }
         }
+        cout << "" << endl;
         cout << "" << endl;
     }
     cout << "" << endl;
@@ -96,61 +120,82 @@ void run(){
 
     Player * players = generatePlayers();
     Player * currentPlayer = &players[1];
-    int rounds = 2;
-    int tieCheck = 0;
 
-    do{
-        int row = -1;
-        int column = -1;
+    int replay = 1;
 
-        checkGrid(grid, currentPlayer, &rounds, &tieCheck);
+    while (replay){
+        int rounds = setRounds();
+        int tieCheck = 0;
 
-        if(currentPlayer == &players[1]){
-            currentPlayer = &players[0];
-        }else{
-            currentPlayer = &players[1];
-        }
+        do{
+            int row = -1;
+            int column = -1;
 
-
-        while(row < 0 || row > 3){
-            cout << currentPlayer->name << " choose your row:" << " ";
-            cin >> row;
-            cout << "" << endl;
-
-            if (row < 0 || row > 3){
-                cout << "Row out of range, please try again." << endl;
-            }
-        }
-
-        while(column < 0 || column > 3){
-            cout << currentPlayer->name << " choose you column: ";
-            cin >> column;
-            cout << "" << endl;
-
-
-            if(column < 0 || column > 3){
-                cout << "Column out of range, please try again." << endl;
-            }
-
-        }
-
-        if(grid[row - 1][column - 1] == -1){
-            grid[row - 1][column - 1] = currentPlayer->id;
-        } else{
             if(currentPlayer == &players[1]){
                 currentPlayer = &players[0];
             }else{
                 currentPlayer = &players[1];
             }
-            cout << "The position you chose is already occupied. Please, try again." << endl;
+
+
+            while(row < 0 || row > 3){
+                cout << currentPlayer->name << " choose your row:" << " ";
+                cin >> row;
+                cout << "" << endl;
+
+                if (row < 0 || row > 3){
+                    cout << "Row out of range, please try again." << endl;
+                }
+            }
+
+            while(column < 0 || column > 3){
+                cout << currentPlayer->name << " choose you column: ";
+                cin >> column;
+                cout << "" << endl;
+
+
+                if(column < 0 || column > 3){
+                    cout << "Column out of range, please try again." << endl;
+                }
+
+            }
+
+            if(grid[row - 1][column - 1] == -1){
+                grid[row - 1][column - 1] = currentPlayer->id;
+            } else{
+                if(currentPlayer == &players[1]){
+                    currentPlayer = &players[0];
+                }else{
+                    currentPlayer = &players[1];
+                }
+                cout << "The position you chose is already occupied. Please, try again." << endl;
+            }
+
+            int show = checkGrid(grid, currentPlayer, &rounds, &tieCheck);
+            if (show == 1){
+                displayScore(&players[0], &players[1]);
+            }
+
+            if (tieCheck == 9) {
+                rounds--;
+                resetGrid(grid);
+                displayScore(&players[0], &players[1]);
+            }
+            displayGrid(grid);
+        }while (rounds > 0);
+
+        string answer;
+        cout << "Want to play again??";
+        cin >> answer;
+        cout << "" << endl;
+
+        if (answer == "y" || answer == "Y" || answer == "yes" || answer == "Yes" || answer == "YES"){
+            replay = 1;
+        }else{
+            replay = 0;
         }
 
-        if (tieCheck == 9) {
-            rounds--;
-            resetGrid(grid);
-        }
-        displayGrid(grid);
-    }while (rounds > 0);
+    }
 }
 
 int main(){
