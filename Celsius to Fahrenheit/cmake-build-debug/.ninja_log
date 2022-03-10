@@ -1,0 +1,11 @@
+# ninja log v5
+0	419	6686269138444314	CMakeFiles/Celsius_to_Fahrenheit.dir/main.cpp.obj	649209fc5401e182
+421	509	6686269139321833	Celsius_to_Fahrenheit.exe	a1ebc7f248de90f
+2	431	6686285280807790	CMakeFiles/Celsius_to_Fahrenheit.dir/main.cpp.obj	649209fc5401e182
+431	522	6686285281695418	Celsius_to_Fahrenheit.exe	a1ebc7f248de90f
+2	393	6686285466938067	CMakeFiles/Celsius_to_Fahrenheit.dir/main.cpp.obj	649209fc5401e182
+393	480	6686285467789041	Celsius_to_Fahrenheit.exe	a1ebc7f248de90f
+2	395	6686288505643156	CMakeFiles/Celsius_to_Fahrenheit.dir/main.cpp.obj	649209fc5401e182
+395	481	6686288506490301	Celsius_to_Fahrenheit.exe	a1ebc7f248de90f
+2	393	6686289696629369	CMakeFiles/Celsius_to_Fahrenheit.dir/main.cpp.obj	649209fc5401e182
+393	480	6686289697478185	Celsius_to_Fahrenheit.exe	a1ebc7f248de90f
