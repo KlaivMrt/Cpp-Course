@@ -55,9 +55,6 @@ void displayScore(Player * player1, Player * player2){
 
 int checkGrid(int _grid[][3], Player * currentPlayer, int * rounds, int * tieCheck){
     int id = currentPlayer->id;
-    cout << *rounds << endl;
-//    cout << rounds << endl;
-//    cout << --*rounds << endl;
 
     if (_grid[0][0] == _grid[1][1] && _grid[1][1] == _grid[2][2] && _grid[0][0] == id){
         currentPlayer->score++;
