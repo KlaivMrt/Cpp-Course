@@ -1,0 +1,3 @@
+C:/Users/arcmi/Desktop/C++ Course/Clion/C++ Course Exercises/Paper-Rock-Scissors/cmake-build-debug/CMakeFiles/Paper_Rock_Scissors.dir
+C:/Users/arcmi/Desktop/C++ Course/Clion/C++ Course Exercises/Paper-Rock-Scissors/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/arcmi/Desktop/C++ Course/Clion/C++ Course Exercises/Paper-Rock-Scissors/cmake-build-debug/CMakeFiles/rebuild_cache.dir
